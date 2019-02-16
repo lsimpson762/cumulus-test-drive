@@ -15,6 +15,11 @@
         src: configurations/{{ansible_hostname}}/interfaces
         dest: /etc/network/interfaces
       notify: apply interface config
+   
+    - name: Install traceroute
+      apt:
+        name: traceroute
+        state: present
 
   handlers:
     - name: apply interface config
