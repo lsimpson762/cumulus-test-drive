@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: Setting up the Test Drive oob-mgmt-server
+    file:
+      state: absent
+      path: /home/cumulus/BootcampAutomation
+
+- hosts: server01:server02
+  become: yes
+  tasks:
+    - name: Setting up the test hosts
+      copy:
+        src: configurations/{{ansible_hostname}}/interfaces
+        dest: /etc/network/interfaces
+      notify: apply interface config
+
+  handlers:
+    - name: apply interface config
+      service:
+        name: networking
+        state: restarted
+
