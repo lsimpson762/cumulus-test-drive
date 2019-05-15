@@ -15,22 +15,11 @@ iface swp49
 auto swp50
 iface swp50
 
-auto BOND0
-iface BOND0
-    bond-slaves swp49 swp50
-
 auto bridge
 iface bridge
-    bridge-ports BOND0 swp2
-    bridge-vids 10 20
+    bridge-ports swp2
+    bridge-vids 20
     bridge-vlan-aware yes
-
-auto vlan10
-iface vlan10
-    address 10.0.10.3/24
-    address-virtual 00:00:00:00:1a:10 10.0.10.1/24
-    vlan-id 10
-    vlan-raw-device bridge
 
 auto vlan20
 iface vlan20
