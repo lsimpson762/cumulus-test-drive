@@ -1,13 +1,4 @@
 ---
-- name: Setting up the Test Drive oob-mgmt-server
-  hosts: localhost
-  become: yes
-  tasks:
-  - name: oob-mgmt-server housekeeping
-    file:
-      state: absent
-      path: /home/cumulus/BootcampAutomation
-
 - name: Seting up the test hosts
   hosts: server01:server02
   become: yes
