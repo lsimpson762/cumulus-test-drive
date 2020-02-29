@@ -5,7 +5,7 @@
   tasks:
     - name: Dropping in config
       copy:
-        src: lab2a-configurations/{{ansible_hostname}}/interfaces
+        src: lab2b-configurations/{{ansible_hostname}}/interfaces
         dest: /etc/network/interfaces
       notify: apply interface config
 
