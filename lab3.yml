@@ -1,22 +1,17 @@
 ---
 - name: Getting you ready for lab3
   hosts: server01:server02:leaf01:leaf02
+  gather_facts: no
   become: yes
   tasks:
     - name: Dropping in config
       copy:
-        src: configurations/{{ansible_hostname}}/interfaces
+        src: lab3-configurations/{{inventory_hostname}}/interfaces
         dest: /etc/network/interfaces
       notify: apply interface config
    
-    - name: Installing traceroute
-      apt:
-        name: traceroute
-        state: present
-
   handlers:
     - name: apply interface config
-      service:
-        name: networking
-        state: restarted
+      become: yes
+      command: ifreload -a
 
