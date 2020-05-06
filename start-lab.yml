@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: leaf:spine:server01:server02
   gather_facts: no
   tasks:
     - name: Restart NTP
@@ -14,7 +14,7 @@
         state: restarted
         name: netq-agent
 
-- hosts: host
+- hosts: server01:server02
   gather_facts: no
   tasks:
     - name: Setting up the test hosts config
