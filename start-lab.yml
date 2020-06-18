@@ -1,4 +1,14 @@
 ---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: place license on webserver
+      become: yes
+      copy:
+        src: license.lic
+        dest: /var/www/html/license.lic
+        mode: '0644'
+
 - hosts: leaf01:leaf02:spine01:server01:server02
   gather_facts: no
   tasks:
