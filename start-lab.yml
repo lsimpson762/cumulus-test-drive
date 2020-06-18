@@ -34,6 +34,12 @@
         dest: /etc/network/interfaces
       notify: apply interface config
 
+    - name: install traceroute
+      become: yes
+      apt:
+        name: traceroute
+        state: present
+
   handlers:
     - name: apply interface config
       become: yes
