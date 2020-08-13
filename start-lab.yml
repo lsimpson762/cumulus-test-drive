@@ -9,7 +9,22 @@
         dest: /var/www/html/license.lic
         mode: '0644'
 
-- hosts: leaf01:leaf02:spine01:server01:server02
+- hosts: leaf01:leaf02:spine01
+  gather_facts: no
+  tasks:
+    - name: Restart NTP
+      become: yes
+      service:
+        state: restarted
+        name: ntp@mgmt
+
+    - name: Restart NetQ Agent
+      become: yes
+      service:
+        state: restarted
+        name: netq-agent
+
+- hosts: server01:server02
   gather_facts: no
   tasks:
     - name: Restart NTP
@@ -23,10 +38,7 @@
       service:
         state: restarted
         name: netq-agent
-
-- hosts: server01:server02
-  gather_facts: no
-  tasks:
+        
     - name: Setting up the test hosts config
       become: yes
       copy:
