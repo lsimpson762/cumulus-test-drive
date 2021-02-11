@@ -27,6 +27,12 @@
 - hosts: server01:server02
   gather_facts: no
   tasks:
+    - name: install ntp if needed
+      become: yes
+      apt:
+        name: ntp
+        state: present
+
     - name: Restart NTP
       become: yes
       service:
