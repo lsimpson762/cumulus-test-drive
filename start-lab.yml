@@ -1,4 +1,15 @@
 ---
+- hosts: localhost:server01:server02:leaf01:leaf02:spine01
+  gather_facts: no
+  tasks:
+    - name: remove netq
+      become: yes
+      apt:
+        name:
+          - netq-apps
+          - netq-agent
+        state: absent
+  
 - hosts: localhost
   gather_facts: no
   tasks:
@@ -9,14 +20,6 @@
         dest: /var/www/html/license.lic
         mode: '0644'
         
-    - name: remove netq
-      become: yes
-      apt:
-        name:
-          - netq-apps
-          - netq-agent
-        state: absent
-
 - hosts: server01:server02
   gather_facts: no
   tasks:
@@ -32,15 +35,7 @@
       apt:
         name: traceroute
         state: present
-        
-    - name: remove netq
-      become: yes
-      apt:
-        name:
-          - netq-apps
-          - netq-agent
-        state: absent
-        
+                
     - name: flush arp
       become: yes
       command: ip -s -s neigh flush all
