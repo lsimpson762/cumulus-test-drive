@@ -43,7 +43,8 @@
         
     - name: flush arp
       become: yes
-      command: arp -d 192.168.200.250
+      command: ip -s -s neigh flush all
+      no_log: true
 
   handlers:
     - name: apply interface config
