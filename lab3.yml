@@ -1,6 +1,6 @@
 ---
 - name: Getting you ready for lab3
-  hosts: server01:server02:leaf01:leaf02
+  hosts: host:leaf
   gather_facts: no
   become: yes
   tasks:
