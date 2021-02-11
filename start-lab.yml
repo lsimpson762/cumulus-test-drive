@@ -8,6 +8,14 @@
         src: license.lic
         dest: /var/www/html/license.lic
         mode: '0644'
+        
+    - name: remove netq
+      become: yes
+      apt:
+        name:
+          - netq-apps
+          - netq-agent
+        state: absent
 
 - hosts: server01:server02
   gather_facts: no
@@ -33,6 +41,10 @@
           - netq-agent
         state: absent
         
+    - name: flush arp
+      become: yes
+      command: arp -d 192.168.200.250
+
   handlers:
     - name: apply interface config
       become: yes
