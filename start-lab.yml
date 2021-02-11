@@ -1,5 +1,5 @@
 ---
-- hosts: localhost:server01:server02:leaf01:leaf02:spine01
+- hosts: localhost:spine:leaf:host
   gather_facts: no
   tasks:
     - name: remove netq
@@ -20,7 +20,7 @@
         dest: /var/www/html/license.lic
         mode: '0644'
         
-- hosts: server01:server02
+- hosts: host
   gather_facts: no
   tasks:
     - name: Setting up the test hosts config
