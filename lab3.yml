@@ -35,4 +35,3 @@
       command: nv config replace /tmp/auto.yaml
     - name: nvue config apply
       command: nv config apply -y
-~
