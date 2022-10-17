@@ -1,14 +1,14 @@
 ---
-- hosts: localhost:spine:leaf:host
-  gather_facts: no
-  tasks:
-    - name: remove netq
-      become: yes
-      apt:
-        name:
-          - netq-apps
-          - netq-agent
-        state: absent
+#- hosts: localhost:spine:leaf:host
+#  gather_facts: no
+#  tasks:
+#    - name: remove netq
+#      become: yes
+#      apt:
+#        name:
+#          - netq-apps
+#          - netq-agent
+#        state: absent
 - hosts: host
   gather_facts: no
   tasks:
